@@ -1561,7 +1561,7 @@ int ws_parse(uint8_t *buffer, uint8_t *buffer60, uint8_t *buffer0h, time_t curti
 
 	lastrain = (float)(buffer0h[0x0D]+(buffer0h[0x0E]<<8))*0.3*c.rain_factor+c.rain_offset;
 	w.rainday = w.rain - lastrain;
-	if (w.rainday<0 || w.rainday>100)
+	if (w.rainday<0) // || w.rainday>2000)
 	{	logger(LOG_ERROR,"ws_parse","Rainday is out of range rain=%f, lastrain=%f",w.rain,lastrain);
 		w.rainday=-1;
 		errcount++;
